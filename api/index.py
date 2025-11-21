@@ -18,7 +18,6 @@ def live_api():
     try:
         r = requests.get(url, headers=headers, params=params)
         data = r.json()
-        #data["server_url"] = "https://loginbp.karim.com/"
         return jsonify(data)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
