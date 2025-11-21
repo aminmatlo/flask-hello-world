@@ -16,11 +16,11 @@ def live_api():
     }
 
     try:
-        r = requests.get(url, headers=headers, params=params)
+        r = requests.get(url, headers=headers, params=params, timeout=10)
         data = r.json()
+        data["server_url"] = "https://loginbp.karim.com/"
         return jsonify(data)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    except requests.exceptions.RequestException as e:
+        return jsonify({"error": "Request failed", "details": str(e)}), 500
+    except ValueError:
+        return jsonify({"error": "Response is not valid JSON"}), 500
