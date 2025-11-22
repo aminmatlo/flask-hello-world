@@ -23,6 +23,6 @@ def live_ver():
             r'\1https://versionffmaxpurplevioleto.vercel.app/\2',
             text
         )
-        return text
+        return "si"
     except Exception as e:
         return f'{{"error":"{str(e)}"}}', 500
