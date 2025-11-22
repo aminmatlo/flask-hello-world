@@ -15,6 +15,6 @@ def live_ver():
     }
     try:
         response = requests.get(url, headers=headers, params=params)
-        return jsonify(response.json())
+        return response.text
     except Exception as e:
         return jsonify({"error": str(e)}), 500
